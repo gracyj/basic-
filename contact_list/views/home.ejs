@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>
+            <%= locals.title  %>
+        </title>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
+        crossorigin="anonymous">
+         
+<!-- our css should be below all other styles so that we can override it -->
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <h1 id="page-heading"> 
+            <i class="fas fa-address-book"></i>
+            MY CONTACTS LIST</h1>
+        <div id="contacts-list-container">
+            <ul>
+                <% for (let i of contact_list) { %>
+                    <li class="contact">
+                        <div class="details">
+                        <p> <%= i.name %> </p>
+                        <p> <%= i.phone %> </p>
+                        </div>
+                     <div class="delete-button">
+                        <!-- <a href="/delete-contact/?phone=<%= i.phone %>"> -->
+                            <a href="/delete-contact/?id=<%= i._id %>"> 
+                          <i class="fas fa-window-close"></i>
+                        </a>
+
+                    </div>
+
+
+                    </li>
+                    <% } %>
+
+        </ul>
+        </div>
+
+<!-- creating form to take user data -->
+
+
+    <form id="new-contact-form"action="/create-contacts" method="POST">
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+            <input type="number" name="phone" placeholder="Enter phone number" required>
+            <button type="submit">
+                Add Contact
+            </button>
+
+        </form>
+
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
+</html>
